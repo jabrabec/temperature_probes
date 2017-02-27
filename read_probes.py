@@ -50,9 +50,11 @@ def read_probes():
             # line of the 'w1_slave' file. Use list slicing to eliminate 't='
             # from that element, convert to float, and divide by 1000 to add in
             # a decimal point.
-            celsius_reading = float(temp_list[-1].split()[-1][2:]) / 1000
+            celsius_reading = round(
+                float(temp_list[-1].split()[-1][2:]) / 1000, 2
+                )
             # Celsius to Fahrenheit conversion equation
-            fahren_reading = celsius_reading * 9.0 / 5.0 + 32.0
+            fahren_reading = round(celsius_reading * 9.0 / 5.0 + 32.0, 2)
             # Add to probe_readings dictionary:
             # key = last 4 digits of temperature probe ID (is unique key)
             # value = sub-dictionary of {C:reading, F:reading} current values
