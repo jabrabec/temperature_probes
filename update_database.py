@@ -1,4 +1,8 @@
 def update_database():
+    '''
+    Connect to mongoDB, get the current readings from read_probes function,
+    update db with these results, and confirm successful save of new readings.
+    '''
 
     from read_probes import read_probes
     from pymongo import MongoClient
