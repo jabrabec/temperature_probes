@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     current_reading = read_probes()
 
-    # Pretty-print if file run interactively
+    # Pretty-print JSON dump of probe readings if file is run directly.
     import json
     print json.dumps(current_reading,
                      sort_keys=True,
