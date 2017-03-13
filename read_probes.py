@@ -58,7 +58,7 @@ def read_probes():
 
             # Initialize empty dictionary
             current_reading = {}
-            # Add to probe_readings dictionary:
+            # Add probe_readings to dictionary:
             # probe_id = last 4 digits of temperature probe ID (is unique key)
             current_reading['timestamp'] = curr_datetime
             current_reading['probe_id'] = probe[-4:]
