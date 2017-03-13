@@ -34,8 +34,8 @@ def read_probes():
     # Get the current date & time prior to taking readings
     curr_datetime = arrow.now().format()
 
-    # Initialize empty probe_readings dictionary
-    probe_readings = {}
+    # Initialize empty probe_readings list
+    probe_readings = []
 
     # Open the 'w1_slave' file in each probe folder
     for probe in probe_ids:
@@ -55,21 +55,20 @@ def read_probes():
                 )
             # Celsius to Fahrenheit conversion equation
             fahren_reading = round(celsius_reading * 9.0 / 5.0 + 32.0, 2)
+
+            # Initialize empty dictionary
+            current_reading = {}
             # Add to probe_readings dictionary:
-            # key = last 4 digits of temperature probe ID (is unique key)
-            # value = sub-dictionary of {C:reading, F:reading} current values
-            probe_readings[probe[-4:]] = {
-                                    "C": celsius_reading,
-                                    "F": fahren_reading
-                                    }
+            # probe_id = last 4 digits of temperature probe ID (is unique key)
+            current_reading['timestamp'] = curr_datetime
+            current_reading['probe_id'] = probe[-4:]
+            current_reading['reading'] = {
+                                        "C": celsius_reading,
+                                        "F": fahren_reading}
 
-    # Initialize empty dictionary
-    current_reading = {}
+            probe_readings.append(current_reading)
 
-    # Add current probe_readings to dictionary with curr_datetime as key
-    current_reading[curr_datetime] = probe_readings
-
-    return current_reading
+    return probe_readings
 
 
 if __name__ == "__main__":
