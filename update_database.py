@@ -17,7 +17,6 @@ def update_database():
 
     # mongoDB collection in 'temp_probes' db is 'readings'.
     # Add these results to db using insert_one command.
-    # item_to_add = db.readings.insert_one(result)
     items_to_add = db.readings.insert_many(result)
 
     # If insert_one was successful, mongoDB will have generated an inserted_id
