@@ -17,12 +17,13 @@ def update_database():
 
     # mongoDB collection in 'temp_probes' db is 'readings'.
     # Add these results to db using insert_one command.
-    item_to_add = db.readings.insert_one(result)
+    # item_to_add = db.readings.insert_one(result)
+    items_to_add = db.readings.insert_many(result)
 
     # If insert_one was successful, mongoDB will have generated an inserted_id
     # value. Check that this value exists and return True for function if so.
     # Otherwise, function returns None.
-    if item_to_add.inserted_id:
+    if items_to_add.inserted_ids:
         return True
 
 
